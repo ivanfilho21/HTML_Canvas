@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Collision</title>
+  <script src="collider.js"></script>
+  <script src="ball.js"></script>
+</head>
+<body>
+  <canvas id="canvas" width="400" height="300"></canvas>
+
+  <script>
+    let ctx = document.querySelector('#canvas').getContext('2d')
+    let collider = new Collider()
+    let sprites = []
+
+    // collider.onCollide = () => alert('pa')
+
+    sprites.push(new Ball(ctx, 20, 'gray'))
+    sprites.push(new Ball(ctx, 50, 'green'))
+    // sprites.push(new Ball(ctx, 30, 'black'))
+
+    sprites[0].x = 300
+    sprites[0].y = 170
+    
+    sprites[1].x = 70
+    sprites[1].y = 200
+    
+
+    for (let s of sprites) {
+      collider.addSprite(s)
+    }
+
+    requestAnimationFrame(run)
+
+    function run() {
+      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
+
+      collider.process()
+
+      for (let s of sprites) {
+        s.update()
+      }
+
+      for (let s of sprites) {
+        s.draw()
+      }
+
+      requestAnimationFrame(run)
+    }
+  </script>
+</body>
+</html>

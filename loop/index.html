@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animation Loop</title>
+  <script src="ball.js"></script>
+  <script src="loop.js"></script>
+</head>
+<body>
+  <canvas id="canvas" width="400" height="300"></canvas>
+  <script>
+    var canvas = document.querySelector('#canvas')
+    var ctx = canvas.getContext('2d')
+    var b1 = new Ball(ctx)
+    var b2 = new Ball(ctx)
+    var b3 = new Ball(ctx)
+    var b4 = new Ball(ctx)
+    var loop = new Loop(ctx)
+
+    /* ctx.fillStyle = '#999'
+    ctx.strokeRect(0, 0, canvas.width, canvas.height)
+    ctx.fillRect(1, 1, canvas.width - 1, canvas.height - 1) */
+
+    b1.x = 100
+    b1.y = 60
+    b1.speedX = 2
+    b1.speedY = -1
+    b1.radius = 30
+    b1.color = 'dodgerblue'
+
+    b2.x = 100
+    b2.y = 160
+    b2.speedX = -5
+    b2.speedY = 2
+    b2.radius = 50
+    b2.color = 'crimson'
+
+    b3.x = canvas.width/2
+    b3.y = canvas.height/2
+    b3.speedX = 0
+    b3.speedY = 0
+    b3.radius = 80
+    b3.color = 'yellow'
+
+    b4.x = 340
+    b4.y = 160
+    b4.speedX = 2
+    b4.speedY = -2
+    b4.radius = 20
+    b4.color = 'whitesmoke'
+    
+    loop.addSprite(b2)
+    loop.addSprite(b1)
+    loop.addSprite(b4)
+    loop.addSprite(b3)
+    loop.run()
+  </script>
+</body>
+</html>

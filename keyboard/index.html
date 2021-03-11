@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keyboard</title>
+  <script src="../loop/loop.js"></script>
+  <script src="../loop/ball.js"></script>
+  <script src="keyboard.js"></script>
+</head>
+<body>
+  <canvas id="canvas" width="500" height="200"></canvas>
+
+  <script>
+    var canvas = document.querySelector('#canvas')
+    var ctx = canvas.getContext('2d')
+    var keyboard = new Keyboard(document)
+    var hero = new Ball(ctx)
+    var loop = new Loop(ctx, keyboard)
+
+    const VK_LEFT = 37
+    const VK_RIGHT = 39
+
+    hero.x = 25
+    hero.y = 25
+    hero.radius = 20
+    hero.color = 'green'
+
+    loop.addSprite(hero)
+    loop.run()
+
+    requestAnimationFrame(run)
+
+    function run() {
+      if (keyboard.isPressed(VK_LEFT)) {
+        hero.x -= 10
+      } else if (keyboard.isPressed(VK_RIGHT)) {
+        hero.x += 10
+      }
+
+      requestAnimationFrame(run)
+    }
+  </script>
+</body>
+</html>
